@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/estate_nav_graph"
+    app:startDestination="@id/addressSearchFragment">
+
+    <fragment
+        android:id="@+id/addressSearchFragment"
+        android:name="com.alexk.nadlansales.ui.fragments.AddressSearchFragment"
+        android:label="AddressSearchFragment"
+        tools:layout="@layout/address_search_fragment">
+        <action
+            android:id="@+id/moveToSalesDataFragment"
+            app:destination="@id/salesDataFragment"/>
+    </fragment>
+    
+    <fragment
+        android:id="@+id/salesDataFragment"
+        android:name="com.alexk.nadlansales.ui.fragments.SalesDataFragment"
+        android:label="sales_data_fragment"
+        tools:layout="@layout/sales_data_fragment">
+
+        <argument
+            android:name="queryJson"
+            app:argType="com.alexk.nadlansales.model.network.esates.EstateQueryJson" />
+
+    </fragment>
+
+</navigation>

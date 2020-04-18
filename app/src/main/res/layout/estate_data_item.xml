@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="estateInfo"
+            type="com.alexk.nadlansales.model.network.esates.EstateInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:layout_margin="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                tools:text="@sample/prices_sample"
+                android:text="@{estateInfo.DEALAMOUNT}"
+                android:id="@+id/price"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                tools:text="@tools:sample/date/mmddyy"
+                android:text="@{estateInfo.DEALDATE}"
+                android:id="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                tools:text="@sample/years_sample"
+                android:text="@{estateInfo.TREND_FORMAT}"
+                android:id="@+id/build_date"
+                app:layout_constraintTop_toBottomOf="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                tools:text="@sample/years_sample"
+                android:text="@{estateInfo.FLOORNO}"
+                android:id="@+id/floor"
+                app:layout_constraintTop_toBottomOf="@+id/build_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                tools:text="@sample/years_sample"
+                android:text="@{estateInfo.DISPLAYADRESS}"
+                android:id="@+id/address"
+                app:layout_constraintTop_toBottomOf="@+id/floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

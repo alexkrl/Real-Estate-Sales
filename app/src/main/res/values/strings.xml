@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Real Estate Deals</string>
+
+    <string name="lorem_price">3,800,800</string>
+    <string name="lorem_date">08.06.2006</string>
+</resources>

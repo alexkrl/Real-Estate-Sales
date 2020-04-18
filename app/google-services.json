@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "541019444165",
+    "firebase_url": "https://real-estate-deals-50ddb.firebaseio.com",
+    "project_id": "real-estate-deals-50ddb",
+    "storage_bucket": "real-estate-deals-50ddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541019444165:android:13b592bf33fb3ca32b71ac",
+        "android_client_info": {
+          "package_name": "com.alexk.nadlansales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541019444165-otuunrh093d4tt4mp63qi00bfmmjj0n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0L6Qc9vb7Jc6SgxNhVcCVs3JqDWuJH0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541019444165-otuunrh093d4tt4mp63qi00bfmmjj0n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
