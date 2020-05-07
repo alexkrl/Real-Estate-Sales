@@ -3,4 +3,16 @@
 
     <string name="lorem_price">3,800,800</string>
     <string name="lorem_date">08.06.2006</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="loading">Loading…</string>
+
+    <string name="acceptable_search_chars">קראטוןםפשדגכעיחלךףזסבהנמצתץ 1234567890</string>
+    <string name="search_address_hint">חפש כתובת</string>
+
+    <string name="facebook_app_id">1348397455346643</string>
+    <string name="fb_login_protocol_scheme">fb1348397455346643</string>
+
 </resources>

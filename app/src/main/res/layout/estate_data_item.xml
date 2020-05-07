@@ -5,7 +5,7 @@
     <data>
         <variable
             name="estateInfo"
-            type="com.alexk.nadlansales.model.network.esates.EstateInfo" />
+            type="com.alexk.nadlansales.model.network.estates.EstateInfo" />
     </data>
 
     <androidx.cardview.widget.CardView

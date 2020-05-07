@@ -1,7 +1,9 @@
 package com.alexk.nadlansales
 
 import android.app.Application
+import com.alexk.nadlansales.di.mainModule
 import org.koin.android.ext.android.startKoin
+
 
 
 /**
@@ -15,10 +17,8 @@ class MainApp : Application() {
             listOf(mainModule),
             loadPropertiesFromFile = true)
 
-        // TEST
-
         // Write a message to the database
-        println("ALEX_TAG - MainApp->onCreate init DB")
+//        println("ALEX_TAG - MainApp->onCreate init DB")
 //        val database = FirebaseDatabase.getInstance()
 //        val myRef = database.getReference("estateTest")
 //        myRef.setValue(EstateInfo(

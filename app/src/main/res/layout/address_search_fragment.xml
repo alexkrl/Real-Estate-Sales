@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.SalesDataFragment">
+    tools:context=".ui.estatesdata.SalesDataFragment">
 
     <LinearLayout
         android:id="@+id/search_layout"
@@ -18,10 +18,11 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:digits="@string/acceptable_search_chars"
             android:id="@+id/editSearch"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:hint="חפש כתובת"
+            android:hint="@string/search_address_hint"
             android:drawableStart="@drawable/ic_search_black_24dp"
             android:imeOptions="actionSearch"
             android:inputType="text"
@@ -36,6 +37,15 @@
         android:id="@+id/addressList"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
+
+    <TextView
+        android:gravity="center"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@+id/search_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/errorMessageLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <ProgressBar
         android:visibility="gone"

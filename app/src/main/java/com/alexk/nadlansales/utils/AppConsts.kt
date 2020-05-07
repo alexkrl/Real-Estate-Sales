@@ -5,4 +5,5 @@ package com.alexk.nadlansales.utils
  */
 object AppConsts {
     const val BASE_URL  = "https://www.nadlan.gov.il/"
+    const val RC_SIGN_IN = 555
 }

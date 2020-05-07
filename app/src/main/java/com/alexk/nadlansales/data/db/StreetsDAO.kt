@@ -10,7 +10,7 @@ import com.alexk.nadlansales.model.entities.Street
 @Dao
 interface StreetsDAO {
 
-    @Query("SELECT * FROM ${Street.TABLE_NAME}")
+    @Query("SELECT * FROM Street")
     fun getAll(): List<Street>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

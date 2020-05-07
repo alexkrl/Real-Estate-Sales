@@ -7,24 +7,25 @@
 
     <fragment
         android:id="@+id/addressSearchFragment"
-        android:name="com.alexk.nadlansales.ui.fragments.AddressSearchFragment"
+        android:name="com.alexk.nadlansales.ui.searchaddress.AddressSearchFragment"
         android:label="AddressSearchFragment"
         tools:layout="@layout/address_search_fragment">
         <action
             android:id="@+id/moveToSalesDataFragment"
             app:destination="@id/salesDataFragment"/>
     </fragment>
-    
+
     <fragment
         android:id="@+id/salesDataFragment"
-        android:name="com.alexk.nadlansales.ui.fragments.SalesDataFragment"
+        android:name="com.alexk.nadlansales.ui.estatesdata.SalesDataFragment"
         android:label="sales_data_fragment"
         tools:layout="@layout/sales_data_fragment">
 
         <argument
-            android:name="queryJson"
-            app:argType="com.alexk.nadlansales.model.network.esates.EstateQueryJson" />
-
+            android:name="queryStreet"
+            app:argType="com.alexk.nadlansales.model.entities.Street"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
 </navigation>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="splashViewModel"-->
+<!--            type="com.alexk.nadlansales.ui.splash.SplashViewModel" />-->
+<!--    </data>-->
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/app_launch_background"
+            android:visibility="visible" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/loadingLabel"
+            android:alpha="0"
+            android:text="@string/loading"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_below="@+id/img_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:id="@+id/socialContainer"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/socialTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:alpha="0"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Use Social Networks To Sign In/Up"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                tools:alpha="1"
+                />
+
+            <Button
+
+                android:scaleX="0"
+                android:scaleY="0"
+                android:layout_below="@+id/socialTitle"
+                android:id="@+id/login_btn_facebook"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:drawableStart="@drawable/ic_facebook_logo"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Continue with Facebook"
+                android:textColor="#fff"
+                app:backgroundTint="#3b5998"/>
+
+            <Button
+
+                android:scaleX="0"
+                android:scaleY="0"
+                android:layout_below="@+id/login_btn_facebook"
+                android:id="@+id/login_btn_google"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:drawableStart="@drawable/ic_google_logo"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Continue with Google"
+                app:backgroundTint="#ffffff" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

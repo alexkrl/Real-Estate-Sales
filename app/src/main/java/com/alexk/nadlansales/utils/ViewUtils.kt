@@ -16,12 +16,20 @@ import kotlinx.coroutines.flow.callbackFlow
  * Created by alexkorolov on 27/02/2020.
  */
 
-fun Context.shortToast(toastMessage : String){
+fun Activity.shortToast(toastMessage : String){
     Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
 }
 
-fun Context.longToast(toastMessage : String){
+fun Activity.longToast(toastMessage : String){
     Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show()
+}
+
+fun Fragment.shortToast(toastMessage : String){
+    Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+}
+
+fun Fragment.longToast(toastMessage : String){
+    Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
 }
 
 fun View.show(){

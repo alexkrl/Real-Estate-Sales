@@ -1,6 +1,6 @@
 package com.alexk.nadlansales.model.network
 
-import com.alexk.nadlansales.model.network.esates.EstateInfo
+import com.alexk.nadlansales.model.network.estates.EstateInfo
 
 data class SalesResponse(
     val AllResults: List<EstateInfo>,
