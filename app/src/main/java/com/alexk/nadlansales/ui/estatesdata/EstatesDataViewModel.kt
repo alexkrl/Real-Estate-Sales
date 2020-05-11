@@ -9,18 +9,14 @@ import androidx.paging.PagedList
 import com.alexk.nadlansales.data.repos.EstatesRepository
 import com.alexk.nadlansales.model.network.estates.EstateInfo
 
-class SalesDataViewModel(private val estatesRepository: EstatesRepository) : ViewModel() {
+class EstatesDataViewModel(private val estatesRepository: EstatesRepository) : ViewModel() {
 
     private var postsLiveData: LiveData<PagedList<EstateInfo>>
 
     var queryAddress = ""
 
     init {
-        val config = PagedList.Config.Builder()
-            .setPageSize(20)
-            .setEnablePlaceholders(false)
-            .build()
-
+        val config = PagedList.Config.Builder().build()
 
         postsLiveData = initializedPagedListBuilder(config)
             .setInitialLoadKey(1)

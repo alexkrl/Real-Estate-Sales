@@ -12,12 +12,12 @@
         tools:layout="@layout/address_search_fragment">
         <action
             android:id="@+id/moveToSalesDataFragment"
-            app:destination="@id/salesDataFragment"/>
+            app:destination="@id/estatesDataFragment"/>
     </fragment>
 
     <fragment
-        android:id="@+id/salesDataFragment"
-        android:name="com.alexk.nadlansales.ui.estatesdata.SalesDataFragment"
+        android:id="@+id/estatesDataFragment"
+        android:name="com.alexk.nadlansales.ui.estatesdata.EstatesDataFragment"
         android:label="sales_data_fragment"
         tools:layout="@layout/sales_data_fragment">
 

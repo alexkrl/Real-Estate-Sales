@@ -1,5 +1,6 @@
 package com.alexk.nadlansales.ui.estatesdata
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,17 +8,15 @@ import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.alexk.nadlansales.R
-import com.alexk.nadlansales.model.network.estates.EstateInfo
 import com.alexk.nadlansales.databinding.EstateDataItemBinding
-//import com.alexk.nadlansales.databinding.EstateDataItemBinding
+import com.alexk.nadlansales.model.network.estates.EstateInfo
+
 
 /**
  * Created by alexkorolov on 08/03/2020.
  */
 
-class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHolder>(
-    DIFF_CALLBACK
-) {
+class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: EstateHistoryHolder, position: Int) =
         getItem(position).let {
@@ -46,8 +45,14 @@ class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHold
         }
     }
 
-    override fun submitList(pagedList: PagedList<EstateInfo>?) {
-        super.submitList(pagedList)
-        println("ALEX_TAG - EstatesHistoryDataAdapter->submitList")
-    }
+
+//    override fun onCurrentListChanged(currentList: PagedList<EstateInfo>?) {
+//        println("ALEX_TAG - EstatesHistoryDataAdapter->onCurrentListChanged11")
+//        super.onCurrentListChanged(currentList)
+//    }
+//
+//    override fun onCurrentListChanged(previousList: PagedList<EstateInfo>?, currentList: PagedList<EstateInfo>?) {
+//        println("ALEX_TAG - EstatesHistoryDataAdapter->onCurrentListChanged22")
+//        super.onCurrentListChanged(previousList, currentList)
+//    }
 }

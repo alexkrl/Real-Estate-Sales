@@ -3,12 +3,11 @@ package com.alexk.nadlansales.di
 import android.content.Context
 import androidx.room.Room
 import com.alexk.nadlansales.data.db.AppDatabase
-import com.alexk.nadlansales.data.db.AppDatabase.Companion.MIGRATION_1_2
 import com.alexk.nadlansales.data.network.EstateApi
 import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.data.repos.EstatesRepository
 import com.alexk.nadlansales.ui.estatesdata.EstatesHistoryDataAdapter
-import com.alexk.nadlansales.ui.estatesdata.SalesDataViewModel
+import com.alexk.nadlansales.ui.estatesdata.EstatesDataViewModel
 import com.alexk.nadlansales.ui.searchaddress.AddressSearchViewModel
 import com.alexk.nadlansales.ui.splash.SplashViewModel
 import com.alexk.nadlansales.utils.AppConsts.BASE_URL
@@ -35,7 +34,7 @@ val mainModule = module {
     single { EstatesHistoryDataAdapter() }
 
     viewModel { AddressSearchViewModel(get(), get()) }
-    viewModel { SalesDataViewModel(get()) }
+    viewModel { EstatesDataViewModel(get()) }
     viewModel { SplashViewModel() }
 
 

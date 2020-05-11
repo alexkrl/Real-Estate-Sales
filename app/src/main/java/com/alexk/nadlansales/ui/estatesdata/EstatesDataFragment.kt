@@ -2,15 +2,16 @@ package com.alexk.nadlansales.ui.estatesdata
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.alexk.nadlansales.R
 import com.alexk.nadlansales.ui.BaseFragment
 import kotlinx.android.synthetic.main.sales_data_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class SalesDataFragment : BaseFragment(R.layout.sales_data_fragment) {
+class EstatesDataFragment : BaseFragment(R.layout.sales_data_fragment) {
 
-    private val viewModel: SalesDataViewModel by viewModel()
+    private val viewModel: EstatesDataViewModel by viewModel()
     private var estatesHistoryDataAdapter: EstatesHistoryDataAdapter? = null
 
 
@@ -20,10 +21,11 @@ class SalesDataFragment : BaseFragment(R.layout.sales_data_fragment) {
         esteteshistoryRecycler.apply {
             estatesHistoryDataAdapter = EstatesHistoryDataAdapter()
             adapter = estatesHistoryDataAdapter
+
         }
 
         arguments?.let { bundle ->
-            val safeArgs = SalesDataFragmentArgs.fromBundle(bundle)
+            val safeArgs = EstatesDataFragmentArgs.fromBundle(bundle)
             val queryStreet = safeArgs.queryStreet
             queryStreet?.Value?.let { initViewModelListener(it) }
         }
@@ -34,6 +36,7 @@ class SalesDataFragment : BaseFragment(R.layout.sales_data_fragment) {
     private fun initViewModelListener(address: String) {
         viewModel.queryAddress = address
         viewModel.estatesDataList.observe(viewLifecycleOwner, Observer {
+            println("ALEX_TAG - SalesDataFragment->initViewModelListener-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n")
             estatesHistoryDataAdapter?.submitList(it)
         })
     }
