@@ -11,6 +11,9 @@ import retrofit2.Response
  */
 class EstatesRepository(private val estateApi: EstateApi, private val appDatabase: AppDatabase) {
 
+    /* Get JsonQuery data
+    * first try to get from DB
+    * then if not result will go to api get it and save to DB*/
     suspend fun getJsonData(query: String): EstateQueryJson? {
         var retVal: EstateQueryJson?
         retVal = getJsonDataFromDB(query)

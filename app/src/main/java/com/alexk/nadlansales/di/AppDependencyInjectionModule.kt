@@ -3,6 +3,7 @@ package com.alexk.nadlansales.di
 import android.content.Context
 import androidx.room.Room
 import com.alexk.nadlansales.data.db.AppDatabase
+import com.alexk.nadlansales.data.db.AppDatabase.Companion.MIGRATION_1_2
 import com.alexk.nadlansales.data.network.EstateApi
 import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.data.repos.EstatesRepository
@@ -60,12 +61,11 @@ fun createWebService(): EstateApi { // networkConnectionInterceptor: NetworkConn
 }
 
 fun getDatabase(context: Context): AppDatabase {
-
     synchronized(context) {
         return Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
             AppDatabase.DB_NAME
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

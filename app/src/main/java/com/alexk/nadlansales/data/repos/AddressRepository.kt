@@ -18,7 +18,7 @@ class AddressRepository(private val estateApi: EstateApi, private val appDatabas
     }
 
     fun getAutoCompleteAddress(query: String) = flow {
-        try {
+//        try {
             emit(State.loading<List<Street>>())
 
             val request = estateApi.getAutoCompleteAddress(query)
@@ -45,10 +45,10 @@ class AddressRepository(private val estateApi: EstateApi, private val appDatabas
             } else {
                 emit(State.error<List<Street>>(request.message()))
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            throw Exception("MyExcept")
-        }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+////            throw Exception("MyExcept")
+//        }
 
     }.flowOn(Dispatchers.IO)
 

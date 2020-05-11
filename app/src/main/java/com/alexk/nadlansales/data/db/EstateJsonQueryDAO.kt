@@ -13,7 +13,10 @@ interface EstateJsonQueryDAO {
     @Query("SELECT * FROM EstateQueryJson where OriginalSearchString = :query")
     fun getQueryJson(query : String): EstateQueryJson
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Query("SELECT * FROM EstateQueryJson")
+    fun getAllQueryJson(): List<EstateQueryJson>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(street: EstateQueryJson)
 
     @Delete

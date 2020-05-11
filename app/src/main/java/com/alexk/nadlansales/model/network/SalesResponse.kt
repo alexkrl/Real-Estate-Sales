@@ -8,5 +8,5 @@ data class SalesResponse(
     val IsSpecificAddressResult: Boolean,
     val PageNumber: Int,
     val QueryMapParams: Any,
-    val SpecificAddressData: Any
+    val SpecificAddressData: List<EstateInfo>
 )
