@@ -40,7 +40,6 @@ class AddressSearchFragment : BaseFragment(R.layout.address_search_fragment) {
 
     private fun initViewModel() {
 
-
         viewModel.addressAutoComplete.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is State.Loading -> loading.show()
@@ -56,15 +55,11 @@ class AddressSearchFragment : BaseFragment(R.layout.address_search_fragment) {
             }
         })
 
-        if (TextUtils.isEmpty(editSearch.text)) {
-            viewModel.getRecentSelected()
-        }
     }
 
     private fun initSearch() {
         lifecycleScope.launchWhenResumed {
             editSearch.asFlow().debounce(500).collect {
-                loading.show()
                 viewModel.autoCompleteAddress(it)
             }
         }
@@ -85,8 +80,7 @@ class AddressSearchFragment : BaseFragment(R.layout.address_search_fragment) {
         hideKeyboard()
         viewModel.saveSelectedStreet(selectedAddress)
 
-        val action =
-            AddressSearchFragmentDirections.moveToSalesDataFragment()
+        val action = AddressSearchFragmentDirections.moveToSalesDataFragment()
         action.queryStreet = selectedAddress
         findNavController().navigate(action)
     }

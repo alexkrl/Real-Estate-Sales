@@ -1,10 +1,8 @@
 package com.alexk.nadlansales.ui.estatesdata
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.alexk.nadlansales.R
@@ -25,6 +23,7 @@ class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHold
             }
         }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstateHistoryHolder {
         val inflater = LayoutInflater.from(parent.context)
         val estateDataItemBinding: EstateDataItemBinding =
@@ -44,15 +43,4 @@ class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHold
 
         }
     }
-
-
-//    override fun onCurrentListChanged(currentList: PagedList<EstateInfo>?) {
-//        println("ALEX_TAG - EstatesHistoryDataAdapter->onCurrentListChanged11")
-//        super.onCurrentListChanged(currentList)
-//    }
-//
-//    override fun onCurrentListChanged(previousList: PagedList<EstateInfo>?, currentList: PagedList<EstateInfo>?) {
-//        println("ALEX_TAG - EstatesHistoryDataAdapter->onCurrentListChanged22")
-//        super.onCurrentListChanged(previousList, currentList)
-//    }
 }

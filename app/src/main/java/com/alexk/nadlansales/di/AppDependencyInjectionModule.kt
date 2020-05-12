@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.alexk.nadlansales.data.db.AppDatabase
 import com.alexk.nadlansales.data.network.EstateApi
+import com.alexk.nadlansales.data.network.NetworkConnectionInterceptor
 import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.data.repos.EstatesRepository
 import com.alexk.nadlansales.ui.estatesdata.EstatesHistoryDataAdapter
@@ -25,11 +26,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val mainModule = module {
 
-    single { createWebService() }
+    single { createWebService(get()) }
     single { getDatabase(get()) }
     single { EstatesRepository(get(), get()) }
     single { AddressRepository(get(), get()) }
-//    single { NetworkConnectionInterceptor(get()) }
+    single { NetworkConnectionInterceptor(get()) }
 //    single { EstatesDataSource(get()) }
     single { EstatesHistoryDataAdapter() }
 
@@ -40,15 +41,16 @@ val mainModule = module {
 
 }
 
-fun createWebService(): EstateApi { // networkConnectionInterceptor: NetworkConnectionInterceptor - removed from constructor for now
+fun createWebService(context: Context): EstateApi {
+// networkConnectionInterceptor: NetworkConnectionInterceptor - removed from constructor for now
 
     val interceptor = HttpLoggingInterceptor()
     interceptor.level = HttpLoggingInterceptor.Level.BODY
-//    val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
+    val networkConnectionInterceptor = NetworkConnectionInterceptor(context)
 
     val okkHttpclient = OkHttpClient.Builder()
         .addInterceptor(interceptor)
+        .addInterceptor(networkConnectionInterceptor)
         .build()
 
     return Retrofit.Builder()

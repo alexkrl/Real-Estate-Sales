@@ -36,7 +36,6 @@ class EstatesDataFragment : BaseFragment(R.layout.sales_data_fragment) {
     private fun initViewModelListener(address: String) {
         viewModel.queryAddress = address
         viewModel.estatesDataList.observe(viewLifecycleOwner, Observer {
-            println("ALEX_TAG - SalesDataFragment->initViewModelListener-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n")
             estatesHistoryDataAdapter?.submitList(it)
         })
     }

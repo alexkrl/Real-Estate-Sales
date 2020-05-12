@@ -23,16 +23,25 @@ class AddressSearchViewModel(
 
     var addressAutoComplete: MutableLiveData<Addresses> = MutableLiveData()
 
+    init {
+        getRecentSelected()
+    }
+
     fun autoCompleteAddress(address: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            addressRepository.getAutoCompleteAddress(address).collect {
-                if (it is State.Success){
-                    it.data.ifEmpty {
-                        addressAutoComplete.postValue(State.error("Not Found !!! :P"))
-                        return@collect
+            if (address.isNullOrEmpty()){
+                getRecentSelected()
+            }
+            else {
+                addressRepository.getAutoCompleteAddress(address).collect {
+                    if (it is State.Success) {
+                        it.data.ifEmpty {
+                            addressAutoComplete.postValue(State.error("Not Found !!! :P"))
+                            return@collect
+                        }
                     }
+                    addressAutoComplete.postValue(it)
                 }
-                addressAutoComplete.postValue(it)
             }
         }
     }
@@ -44,7 +53,7 @@ class AddressSearchViewModel(
         }
     }
 
-    fun getRecentSelected() {
+    private fun getRecentSelected() {
         viewModelScope.launch(Dispatchers.IO) {
             addressAutoComplete.postValue(State.success(appDatabase.streetsDAO().getAll()))
         }

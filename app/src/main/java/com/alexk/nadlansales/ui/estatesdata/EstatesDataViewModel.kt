@@ -16,7 +16,10 @@ class EstatesDataViewModel(private val estatesRepository: EstatesRepository) : V
     var queryAddress = ""
 
     init {
-        val config = PagedList.Config.Builder().build()
+        val config = PagedList.Config.Builder()
+            .setPageSize(20)
+            .setEnablePlaceholders(false)
+            .build()
 
         postsLiveData = initializedPagedListBuilder(config)
             .setInitialLoadKey(1)
