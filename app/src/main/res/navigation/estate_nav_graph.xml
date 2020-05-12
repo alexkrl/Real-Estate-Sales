@@ -19,7 +19,7 @@
         android:id="@+id/estatesDataFragment"
         android:name="com.alexk.nadlansales.ui.estatesdata.EstatesDataFragment"
         android:label="sales_data_fragment"
-        tools:layout="@layout/sales_data_fragment">
+        tools:layout="@layout/estates_data_fragment">
 
         <argument
             android:name="queryStreet"
