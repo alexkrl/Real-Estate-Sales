@@ -1,7 +1,6 @@
-package com.alexk.nadlansales.ui.searchaddress
+package com.alexk.nadlansales.ui.search_estates
 
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController

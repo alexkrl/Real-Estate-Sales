@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addressSearchFragment"
-        android:name="com.alexk.nadlansales.ui.searchaddress.AddressSearchFragment"
+        android:name="com.alexk.nadlansales.ui.search_estates.AddressSearchFragment"
         android:label="AddressSearchFragment"
         tools:layout="@layout/address_search_fragment">
         <action

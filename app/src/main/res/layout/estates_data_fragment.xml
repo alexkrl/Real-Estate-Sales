@@ -16,6 +16,7 @@
         tools:listitem="@layout/estate_data_item" />
 
     <ProgressBar
+        android:visibility="gone"
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

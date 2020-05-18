@@ -1,4 +1,4 @@
-package com.alexk.nadlansales.ui.searchaddress
+package com.alexk.nadlansales.ui.search_estates
 
 import android.view.LayoutInflater
 import android.view.View

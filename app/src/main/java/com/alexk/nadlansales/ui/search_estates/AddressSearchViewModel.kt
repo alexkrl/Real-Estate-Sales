@@ -1,4 +1,4 @@
-package com.alexk.nadlansales.ui.searchaddress
+package com.alexk.nadlansales.ui.search_estates
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

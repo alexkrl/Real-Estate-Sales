@@ -2,8 +2,12 @@ package com.alexk.nadlansales.ui.estatesdata
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.alexk.nadlansales.R
+import com.alexk.nadlansales.data.network.State
 import com.alexk.nadlansales.ui.BaseFragment
+import com.alexk.nadlansales.utils.hide
+import com.alexk.nadlansales.utils.show
 import kotlinx.android.synthetic.main.estates_data_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -18,9 +22,9 @@ class EstatesDataFragment : BaseFragment(R.layout.estates_data_fragment) {
         super.onActivityCreated(savedInstanceState)
 
         esteteshistoryRecycler.apply {
+
             estatesHistoryDataAdapter = EstatesHistoryDataAdapter()
             adapter = estatesHistoryDataAdapter
-
         }
 
         arguments?.let { bundle ->
@@ -34,8 +38,17 @@ class EstatesDataFragment : BaseFragment(R.layout.estates_data_fragment) {
 
     private fun initViewModelListener(address: String) {
         viewModel.queryAddress = address
-        viewModel.estatesDataList.observe(viewLifecycleOwner, Observer {
+        viewModel.estatesPageData.observe(viewLifecycleOwner, Observer {
             estatesHistoryDataAdapter?.submitList(it)
+        })
+
+        viewModel.networkState.observe(viewLifecycleOwner, Observer {
+            when (it){
+                is State.Loading -> loading.show()
+                is State.LoadingFinish -> loading.hide()
+                is State.Success -> TODO()
+                is State.Error -> TODO()
+            }
         })
     }
 }

@@ -1,10 +1,9 @@
-package com.alexk.nadlansales.ui.searchaddress
+package com.alexk.nadlansales.ui.search_estates
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alexk.nadlansales.model.entities.Street
-import com.alexk.nadlansales.ui.searchaddress.AddressViewHolder
 
 /**
  * Created by alexkorolov on 08/03/2020.

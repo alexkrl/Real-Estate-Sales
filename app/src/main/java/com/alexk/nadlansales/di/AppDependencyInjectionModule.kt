@@ -9,7 +9,7 @@ import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.data.repos.EstatesRepository
 import com.alexk.nadlansales.ui.estatesdata.EstatesHistoryDataAdapter
 import com.alexk.nadlansales.ui.estatesdata.EstatesDataViewModel
-import com.alexk.nadlansales.ui.searchaddress.AddressSearchViewModel
+import com.alexk.nadlansales.ui.search_estates.AddressSearchViewModel
 import com.alexk.nadlansales.ui.splash.SplashViewModel
 import com.alexk.nadlansales.utils.AppConsts.BASE_URL
 import okhttp3.OkHttpClient
