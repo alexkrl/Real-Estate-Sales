@@ -9,13 +9,15 @@ import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.data.repos.EstatesRepository
 import com.alexk.nadlansales.ui.estatesdata.EstatesDataViewModel
 import com.alexk.nadlansales.ui.estatesdata.EstatesHistoryDataAdapter
+import com.alexk.nadlansales.ui.mapfragment.MapViewModel
 import com.alexk.nadlansales.ui.search_estates.AddressSearchViewModel
 import com.alexk.nadlansales.ui.splash.SplashViewModel
 import com.alexk.nadlansales.utils.AppConsts.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.SecureRandom
@@ -41,9 +43,11 @@ val mainModule = module {
 //    single { EstatesDataSource(get()) }
     single { EstatesHistoryDataAdapter() }
 
+//    viewModel { SplashViewModel() }
     viewModel { AddressSearchViewModel(get(), get()) }
     viewModel { EstatesDataViewModel(get()) }
     viewModel { SplashViewModel() }
+    viewModel { MapViewModel() }
 
 
 }

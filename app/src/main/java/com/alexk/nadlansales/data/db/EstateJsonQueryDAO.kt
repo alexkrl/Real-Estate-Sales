@@ -11,7 +11,7 @@ import com.alexk.nadlansales.model.entities.EstateQueryJson
 interface EstateJsonQueryDAO {
 
     @Query("SELECT * FROM EstateQueryJson where OriginalSearchString = :query")
-    fun getQueryJson(query : String): EstateQueryJson
+    fun getQueryJson(query: String): EstateQueryJson
 
     @Query("SELECT * FROM EstateQueryJson")
     fun getAllQueryJson(): List<EstateQueryJson>

@@ -16,7 +16,7 @@ class EstatesDataViewModel(private val estatesRepository: EstatesRepository) : V
         estatesRepository.getLiveDataPageList(queryAddress, viewModelScope)
     }
 
-    val networkState : LiveData<State<String>> by lazy {
+    val networkState: LiveData<State<String>> by lazy {
         estatesRepository.getLiveDataState()
     }
 }

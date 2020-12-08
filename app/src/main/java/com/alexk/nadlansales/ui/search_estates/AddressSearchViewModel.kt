@@ -1,18 +1,21 @@
 package com.alexk.nadlansales.ui.search_estates
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexk.nadlansales.data.db.AppDatabase
+import com.alexk.nadlansales.data.network.State
 import com.alexk.nadlansales.data.repos.AddressRepository
 import com.alexk.nadlansales.model.entities.Street
-import com.alexk.nadlansales.data.network.State
 import com.alexk.nadlansales.utils.Addresses
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import com.alexk.nadlansales.utils.Coroutines
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 @FlowPreview
@@ -21,26 +24,44 @@ class AddressSearchViewModel(
     private val appDatabase: AppDatabase
 ) : ViewModel() {
 
-    var addressAutoComplete: MutableLiveData<Addresses> = MutableLiveData()
+    private val _addressAutoComplete = MutableLiveData<Addresses>()
+    val addressAutoComplete: LiveData<Addresses>
+        get() = _addressAutoComplete
+
+    private val testFlow = MutableStateFlow(null)
+    private val myTestFlow : MutableStateFlow<Nothing?> = testFlow
+//    private val _stateFlowAddress = MutableStateFlow()
+//    private val test : StateFlow<Int> = _stateFlowAddress
+
+    private val _countState = MutableStateFlow(0)
+    val countState: StateFlow<Int> = _countState
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        println("ALEX_TAG - AddressSearchViewModel-> ${exception.message}")
+    }
 
     init {
+
+//        _stateFlowAddress.value = State.loading<List<String>>()
         getRecentSelected()
     }
 
     fun autoCompleteAddress(address: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (address.isNullOrEmpty()){
-                getRecentSelected()
-            }
-            else {
-                addressRepository.getAutoCompleteAddress(address).collect {
-                    if (it is State.Success) {
-                        it.data.ifEmpty {
-                            addressAutoComplete.postValue(State.error("Not Found !!! :P"))
-                            return@collect
+
+        viewModelScope.launch(exceptionHandler) {
+            withContext(Dispatchers.IO){
+                if (address.isNullOrEmpty()) {
+                    getRecentSelected()
+                } else {
+                    addressRepository.getAutoCompleteAddress(address).collect {
+                        if (it is State.Success) {
+                            it.data.ifEmpty {
+                                _addressAutoComplete.postValue(State.error("Not Found !!! :P"))
+                                return@collect
+                            }
                         }
+                        _addressAutoComplete.postValue(it)
                     }
-                    addressAutoComplete.postValue(it)
                 }
             }
         }
@@ -54,13 +75,10 @@ class AddressSearchViewModel(
     }
 
     private fun getRecentSelected() {
-        viewModelScope.launch(Dispatchers.IO) {
-            addressAutoComplete.postValue(State.success(appDatabase.streetsDAO().getAll()))
+        viewModelScope.launch(exceptionHandler) {
+            withContext(Dispatchers.IO){
+                _addressAutoComplete.postValue(State.success(appDatabase.streetsDAO().getAll()))
+            }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        println("ALEX_TAG - AddressSearchViewModel->onCleared")
     }
 }

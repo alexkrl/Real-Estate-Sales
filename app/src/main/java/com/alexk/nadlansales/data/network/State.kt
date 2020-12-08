@@ -9,7 +9,7 @@ sealed class State<T> {
     class Loading<T> : State<T>()
 
     /* Informs that action is finished */
-    class LoadingFinish<T> : State<T>()
+    class LoadingFinish<T>(val isEmpty: Boolean) : State<T>()
 
     /* Informs that action is finished with data */
     data class Success<T>(val data: T) : State<T>()
@@ -21,7 +21,7 @@ sealed class State<T> {
 
         fun <T> loading() = Loading<T>()
 
-        fun <T> loadingFinish() = LoadingFinish<T>()
+        fun <T> loadingFinish(isEmpty: Boolean) = LoadingFinish<T>(isEmpty)
 
         fun <T> success(data: T) = Success(data)
 

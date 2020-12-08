@@ -2,19 +2,21 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="25dp"
+    android:minHeight="32dp"
     android:elevation="4dp"
     android:layout_margin="8dp">
 
     <TextView
+        android:textColor="@color/blue"
         android:id="@+id/adreessName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:text="Lorem Address"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.cardview.widget.CardView>

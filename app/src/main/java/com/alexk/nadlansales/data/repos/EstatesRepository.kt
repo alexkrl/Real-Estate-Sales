@@ -49,9 +49,12 @@ class EstatesRepository(private val estateApi: EstateApi, private val appDatabas
         if (retVal == null) {
             val queryResponse = estateApi.getEstatesJson(query)
             val queryJson = queryResponse.body()
-            queryJson?.PageNo = 1
-            queryJson?.let { saveJsonToDB(it) }
-
+            queryJson?.let { data ->
+                if (!data.OriginalSearchString.isNullOrEmpty()) {
+                    data.PageNo = 1
+                    saveJsonToDB(data)
+                }
+            }
             retVal = queryJson
         }
         return retVal

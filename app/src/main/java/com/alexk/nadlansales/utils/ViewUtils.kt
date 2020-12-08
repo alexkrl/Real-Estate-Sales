@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -16,27 +17,27 @@ import kotlinx.coroutines.flow.callbackFlow
  * Created by alexkorolov on 27/02/2020.
  */
 
-fun Activity.shortToast(toastMessage : String){
+fun Activity.shortToast(toastMessage: String) {
     Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
 }
 
-fun Activity.longToast(toastMessage : String){
+fun Activity.longToast(toastMessage: String) {
     Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show()
 }
 
-fun Fragment.shortToast(toastMessage : String){
+fun Fragment.shortToast(toastMessage: String) {
     Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
 }
 
-fun Fragment.longToast(toastMessage : String){
+fun Fragment.longToast(toastMessage: String) {
     Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
 }
 
-fun View.show(){
+fun View.show() {
     this.visibility = View.VISIBLE
 }
 
-fun View.hide(){
+fun View.hide() {
     this.visibility = View.GONE
 }
 
@@ -59,7 +60,17 @@ fun EditText.asFlow() = callbackFlow {
         offer(it.toString())
     }
 
-    awaitClose{
+    awaitClose {
         removeTextChangedListener(textWatcher)
     }
 }
+
+//fun SearchView.asFlow() = callbackFlow {
+//    val textWatcher = doAfterTextChanged {
+//        offer(it.toString())
+//    }
+//
+//    awaitClose {
+//        removeTextChangedListener(textWatcher)
+//    }
+//}
