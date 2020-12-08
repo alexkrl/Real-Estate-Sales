@@ -32,6 +32,8 @@ class AddressSearchViewModel(
     private val myTestFlow : MutableStateFlow<Nothing?> = testFlow
 //    private val _stateFlowAddress = MutableStateFlow()
 //    private val test : StateFlow<Int> = _stateFlowAddress
+//    private val test : StateFlow<Int> = _stateFlowAddress
+//    private val test : StateFlow<Int> = _stateFlowAddress
 
     private val _countState = MutableStateFlow(0)
     val countState: StateFlow<Int> = _countState
