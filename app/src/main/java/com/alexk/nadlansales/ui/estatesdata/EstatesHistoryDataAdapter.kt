@@ -23,14 +23,11 @@ class EstatesHistoryDataAdapter : PagedListAdapter<EstateInfo, EstateHistoryHold
             }
         }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstateHistoryHolder {
         val inflater = LayoutInflater.from(parent.context)
         val estateDataItemBinding: EstateDataItemBinding =
             DataBindingUtil.inflate(inflater, R.layout.estate_data_item, parent, false)
-        return EstateHistoryHolder(
-            estateDataItemBinding
-        )
+        return EstateHistoryHolder(estateDataItemBinding)
     }
 
     companion object {

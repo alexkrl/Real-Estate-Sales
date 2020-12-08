@@ -3,22 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/estate_nav_graph"
-    app:startDestination="@id/addressSearchFragment">
+    app:startDestination="@id/mainFragment">
+
 
     <fragment
         android:id="@+id/addressSearchFragment"
         android:name="com.alexk.nadlansales.ui.search_estates.AddressSearchFragment"
-        android:label="AddressSearchFragment"
+        android:label="Search"
         tools:layout="@layout/address_search_fragment">
-        <action
-            android:id="@+id/moveToSalesDataFragment"
-            app:destination="@id/estatesDataFragment"/>
+
     </fragment>
 
     <fragment
         android:id="@+id/estatesDataFragment"
         android:name="com.alexk.nadlansales.ui.estatesdata.EstatesDataFragment"
-        android:label="sales_data_fragment"
+        android:label="Sales Info"
         tools:layout="@layout/estates_data_fragment">
 
         <argument
@@ -27,5 +26,37 @@
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.alexk.nadlansales.ui.mapfragment.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/map_fragment">
+
+        <action
+            android:id="@+id/moveToSalesDataFragment"
+            app:destination="@id/estatesDataFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.alexk.nadlansales.ui.main.MainFragment"
+        android:label="Main"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/moveToMap"
+            app:destination="@id/mapFragment" />
+
+        <action
+            android:id="@+id/moveToSalesDataFragment"
+            app:destination="@id/estatesDataFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.alexk.nadlansales.ui.news.NewsFragment"
+        android:label="news_fragment"
+        tools:layout="@layout/news_fragment" />
 
 </navigation>

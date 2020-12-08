@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".MainApp"
@@ -28,27 +29,29 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activity.LaunchActivity"
             tools:ignore="LockedOrientationActivity" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
 
 
         <!-- TODO - REMOVE ERROR MESSAGE FROM BUILD BUT DO I NEED THIS ?! LETS CHECK -->
@@ -63,6 +66,7 @@
             tools:replace="android:launchMode" />
 
         <service android:name="com.google.firebase.components.ComponentDiscoveryService" />
+
         <meta-data
             android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
             android:value="com.google.firebase.components.ComponentRegistrar" />
@@ -73,6 +77,10 @@
             android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
             android:value="com.google.firebase.components.ComponentRegistrar" />
         <!-- END -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB1kVGAGcY-q7zd3bgfEtt_QXEVtDiTJUw" />
 
     </application>
 

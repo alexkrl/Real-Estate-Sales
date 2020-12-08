@@ -6,4 +6,4 @@ data class Nav(
     val order: Int,
     val text: String,
     val url: String
-): Serializable
+) : Serializable

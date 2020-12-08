@@ -1,9 +1,9 @@
 package com.alexk.nadlansales.data.network
 
 
+import com.alexk.nadlansales.model.entities.EstateQueryJson
 import com.alexk.nadlansales.model.network.AutoCompleteResponse
 import com.alexk.nadlansales.model.network.SalesResponse
-import com.alexk.nadlansales.model.entities.EstateQueryJson
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

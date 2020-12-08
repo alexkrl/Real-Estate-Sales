@@ -9,4 +9,4 @@ data class QueryMapParams(
     val QueryObjectType: String,
     val QueryToRun: Any,
     val SpacialWhereClause: Any
-): Serializable
+) : Serializable

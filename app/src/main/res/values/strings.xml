@@ -14,5 +14,6 @@
 
     <string name="facebook_app_id">1348397455346643</string>
     <string name="fb_login_protocol_scheme">fb1348397455346643</string>
+    <string name="no_results_found">אין תוצאות לכתובת</string>
 
 </resources>

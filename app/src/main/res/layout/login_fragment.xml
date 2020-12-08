@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContainer"
     android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:layout_height="wrap_content"
         android:scaleType="center"
         android:src="@drawable/app_launch_background"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
 
 </RelativeLayout>

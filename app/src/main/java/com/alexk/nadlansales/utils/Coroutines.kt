@@ -1,5 +1,6 @@
 package com.alexk.nadlansales.utils
 
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -9,14 +10,17 @@ import kotlinx.coroutines.launch
  */
 object Coroutines {
 
-    fun main(work: suspend (() -> Unit)) =
-        CoroutineScope(Dispatchers.Main).launch {
-            work()
-        }
+    fun main(work: suspend (() -> Unit)) = CoroutineScope(Dispatchers.Main).launch(exceptionHandler) {
+        work()
+    }
 
-    fun io(work: suspend (() -> Unit)) =
-        CoroutineScope(Dispatchers.IO).launch {
-            work()
-        }
+
+    fun io(work: suspend (() -> Unit)) = CoroutineScope(Dispatchers.IO).launch(exceptionHandler) {
+        work()
+    }
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        println("ALEX_TAG - AddressSearchViewModel-> ${exception.message}")
+    }
 
 }

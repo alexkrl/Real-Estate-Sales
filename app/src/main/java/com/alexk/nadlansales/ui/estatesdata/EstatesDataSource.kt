@@ -31,7 +31,9 @@ class EstatesDataSource(
             val resp = estateQueryJson?.let { estatesRepository.getData(it) }
             val estateList = prepareEstateList(resp)
             println("ALEX_TAG - EstatesDataSource->loadInitial ${estateList.size}")
-            networkState.postValue(State.loadingFinish())
+
+            networkState.postValue(State.loadingFinish(estateList.isNullOrEmpty()))
+
             callback.onResult(estateList, 1, 2)
         }
     }

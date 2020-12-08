@@ -5,20 +5,22 @@ import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.animation.doOnEnd
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.alexk.nadlansales.R
 import com.alexk.nadlansales.ui.BaseFragment
-import com.alexk.nadlansales.ui.activities.MainActivity
-import com.alexk.nadlansales.utils.AppConsts
+import com.alexk.nadlansales.ui.activity.LaunchActivity
+import com.alexk.nadlansales.utils.hide
 import com.alexk.nadlansales.utils.shortToast
+import com.alexk.nadlansales.utils.show
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -30,13 +32,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import kotlinx.android.synthetic.main.fragment_splash.*
-import org.koin.android.ext.android.inject
-import java.util.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
-    private val splashViewModel: SplashViewModel by inject()
+    private val splashViewModel: SplashViewModel by viewModel()
     private var callbackManager = CallbackManager.Factory.create()
     private var socialLayoutAnimationDone = false
 
@@ -45,6 +46,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
         splashViewModel.checkIfUserIsAuthenticatedInFirebase()
         splashViewModel.userAuthLiveData.observe(viewLifecycleOwner, Observer { userAuthorized ->
             if (userAuthorized) {
+                authenticationState.hide()
                 startMainActivity()
             } else {
                 showUserAuth()
@@ -58,7 +60,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     }
 
     private fun startMainActivity() {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, LaunchActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         activity?.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -89,7 +91,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
         // TODO replace hardcoded values
         val startDelay = 300L
-        val animationDuration = 1000L
+        val animationDuration = 500L
 
         ViewCompat.animate(img_logo)
             .translationY(-calculateImageTranslationY())
@@ -105,22 +107,24 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 ViewCompat.animate(v)
                     .alpha(1f)
                     .setStartDelay(startDelay * i + 500)
-                    .setDuration(1000)
+                    .setDuration(animationDuration)
             } else {
                 ViewCompat.animate(v)
                     .scaleY(1f).scaleX(1f)
                     .setStartDelay(startDelay * i + 500)
-                    .setDuration(500)
+                    .setDuration(animationDuration)
             }
             viewAnimator.setInterpolator(DecelerateInterpolator()).start()
         }
 
         login_btn_google.setOnClickListener {
             continueWithGoogle()
+            authenticationState.show()
         }
 
         login_btn_facebook.setOnClickListener {
             continueWithFacebook()
+            authenticationState.show()
         }
     }
 
@@ -133,7 +137,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     private fun continueWithGoogle() {
         val signInClient = buildGoogleSignInClient()
         val intent = signInClient.signInIntent
-        startActivityForResult(intent, AppConsts.RC_SIGN_IN)
+        googleSignIn.launch(intent)
     }
 
     private fun buildGoogleSignInClient(): GoogleSignInClient {
@@ -145,16 +149,19 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
         return GoogleSignIn.getClient(activity as SplashActivity, gso)
     }
 
-    private fun continueWithFacebook(){
+    private fun continueWithFacebook() {
         LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 splashViewModel.firebaseAuthWithFacebook(loginResult)
             }
 
             override fun onCancel() {
+                authenticationState.hide()
                 println("ALEX_TAG - SplashFragment->onCancel")
             }
+
             override fun onError(error: FacebookException) {
+                authenticationState.hide()
                 error.printStackTrace()
             }
         })
@@ -162,21 +169,31 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
         LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
     }
 
+    private val googleSignIn = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        authenticationState.hide()
+        val result = Auth.GoogleSignInApi.getSignInResultFromIntent(it.data)
+        if (result!!.isSuccess) {
+            val account = result.signInAccount
+            splashViewModel.firebaseAuthWithGoogle(account)
+        } else {
+            Log.e("ALEX", result.toString())
+            shortToast("Sign In Failed")
+        }
+    }
+
+    private val facebookAlex = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+    }
+
+    override fun setTitle() {
+        // no title
+    }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AppConsts.RC_SIGN_IN) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (result!!.isSuccess) {
-                val account = result.signInAccount
-                splashViewModel.firebaseAuthWithGoogle(account)
-            } else {
-
-                shortToast("Sign In Failed")
-            }
-        }
-        else{
-            callbackManager.onActivityResult(requestCode, resultCode, data)
-        }
+        println("ALEX_TAG - SplashFragment->onActivityResult")
+        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
 }

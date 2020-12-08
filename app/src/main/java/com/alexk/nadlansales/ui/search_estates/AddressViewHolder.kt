@@ -12,10 +12,10 @@ import com.alexk.nadlansales.model.entities.Street
  * Created by alexkorolov on 01/04/2020.
  */
 class AddressViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.address_list_item, parent, false)){
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.address_list_item, parent, false)) {
 
-    private var address : TextView? = null
-    private var root : View? = null
+    private var address: TextView? = null
+    private var root: View? = null
 
 
     init {
@@ -29,7 +29,7 @@ class AddressViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     ) {
         address?.text = addressData.Value
 
-        root?.setOnClickListener{
+        root?.setOnClickListener {
             onItemClick(addressData)
         }
     }
